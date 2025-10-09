@@ -75,13 +75,18 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     { icon: LayoutTemplate, label: "Ads", href: "/admin/ads" },
     { icon: Mail, label: "Newsletter", href: "/admin/newsletter" },
     { icon: Users, label: "User Management", href: "/admin/users" },
-    { icon: UIcon, label: "My Profile", href:`/admin/users/${activeUser._id}` },
+    {
+      icon: UIcon,
+      label: "My Profile",
+      href: activeUser._id ? `/admin/users/${activeUser._id}` : "#",
+    },
   ];
 
   useEffect(() => {
     const fetchUser = async () => {
       if (user?.userEmail) {
         const { data: userData } = await userFetch();
+        console.log("Fetched user data:", userData); // Debug log
         if (userData) {
           setActiveUser(userData);
         }
@@ -89,7 +94,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     };
 
     fetchUser();
-  }, [user.userEmail]);
+  }, [user.userEmail, userFetch]);
 
   return (
     <SidebarProvider>
@@ -110,8 +115,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.href}
-                    tooltip={item.label}
-                  >
+                    tooltip={item.label}>
                     <a href={item.href}>
                       <item.icon className="h-5 w-5" />
                       <span>{item.label}</span>
@@ -121,12 +125,9 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
               ))}
             </SidebarMenu>
           </SidebarContent>
-          <SidebarFooter className="border-t p-4 text-black bg-white">
+          <SidebarFooter className="border-b p-4 text-black bg-white">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                {/* <div className="h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
-                  {activeUser?.firstName?.charAt(0) ?? "U"}
-                </div> */}
                 <div>
                   <div className="font-medium">{activeUser?.firstName}</div>
                   <div className="text-xs text-muted-foreground">
@@ -136,7 +137,10 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
               </div>
               <div className="flex items-center gap-2">
                 <ModeToggle />
-                <Button variant="ghost" size="icon" onClick={handleLogout}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}>
                   <LogOut className="h-5 w-5" />
                 </Button>
               </div>
