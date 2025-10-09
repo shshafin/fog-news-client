@@ -20,7 +20,8 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*", // frontend e je route call korbe
-        destination: "http://newsportal.marcelinestudios.com:5001/api/:path*", // backend HTTP
+        destination:
+          "http://newsportal.marcelinestudios.com:5001/api/v1/:path*", // backend HTTP
       },
     ];
   },
