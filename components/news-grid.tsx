@@ -56,7 +56,7 @@ export default function NewsGrid({ category, limit }: NewsGridProps) {
         <span className="border-l-4 border-red-600 pl-2">{sectionTitle}</span>
       </h2>
       {news.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
           {news.map((article) => (
             <Card key={article._id} className="overflow-hidden">
               <div className="relative h-48">

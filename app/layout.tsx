@@ -6,6 +6,7 @@ import QueryProvider from "@/providers/QueryProvider";
 import { AuthProvider } from "@/providers/authProvider";
 import ClientOnly from "@/providers/ClientOnly";
 import { Toaster } from "react-hot-toast";
+import GoogleTranslateProvider from "@/components/google-translate/GoogleTranslateProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,12 +48,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <ClientOnly>
           <ThemeProvider>
+            <GoogleTranslateProvider>
             <QueryProvider>
               <AuthProvider>
                 <LanguageProvider>{children}</LanguageProvider>
                 <Toaster position="top-right" />
               </AuthProvider>
             </QueryProvider>
+            </GoogleTranslateProvider>
           </ThemeProvider>
         </ClientOnly>
       </body>
