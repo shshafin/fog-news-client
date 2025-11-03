@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/components/header";
 import HeroSection from "@/components/hero-section";
 import NewsGrid from "@/components/news-grid";
@@ -15,6 +16,8 @@ import CategoryNews from "@/components/categories/category-news";
 import PopupAd from "@/components/popup-ads";
 import MultimediaSection from "./multimedia/multimedia-section";
 import LatesNews from "@/components/latest-news";
+import LatestPage from "./test/page";
+import LatestTrendingNews from "@/components/latest-news";
 
 export default function Home() {
   return (
@@ -26,14 +29,12 @@ export default function Home() {
         <PopupAd />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           <div className="lg:col-span-2">
-            <div className="grid grid-cols-3 gap-2">
-              <div className="col-span-1">
-
-              <LatesNews/>
+            <div className="grid  grid-cols-3 gap-2">
+              <div className="col-span-3 md:col-span-1 order-2 md:order-none">
+                <LatestTrendingNews />
               </div>
-              <div className="col-span-2">
-
-              <NewsGrid category="featured" limit={4} />
+              <div className="col-span-3 md:col-span-2 order-1 md:order-none">
+                <NewsGrid category="featured" limit={4} />
               </div>
             </div>
             <MultimediaSection />

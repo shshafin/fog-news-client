@@ -1,9 +1,8 @@
+// components/latest-trending-news.tsx
 "use client";
 
 import { useApi } from "@/hooks/useApi";
-import React from "react";
-import Link from "next/link";
-import { formatDistanceToNow } from "date-fns";
+import React, { useState } from "react";
 
 interface NewsItem {
   _id: string;
@@ -14,65 +13,93 @@ interface NewsItem {
     slug: string;
   };
   publishDate: string;
+  isTrending?: boolean;
 }
 
-const LatesNews = () => {
+interface NewsResponse {
+  latest: NewsItem[];
+  trending: NewsItem[];
+}
+
+const LatestTrendingNews = () => {
   const {
-    data: news = [],
+    data: newsData = { latest: [], trending: [] },
     isLoading,
     error,
-  } = useApi<NewsItem[]>(["news"], "news/highlighted");
-  console.log("=====>",news);
+  } = useApi<NewsResponse>(["news", "highlighted"], "news/highlighted"); 
 
-  // Sort by publishDate descending (newest first)
-  const sortedNews = [...news].sort(
-    (a, b) =>
-      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-  );
+  
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading news</div>;
+  const [activeTab, setActiveTab] = useState<"latest" | "trending">("latest");
+
+  const latestLimited = (newsData.latest || []).slice(0, 6);
+  const trendingLimited = (newsData.trending || []).slice(0, 6);
+  const currentNewsList =
+    activeTab === "latest" ? latestLimited : trendingLimited;
+
+  if (isLoading) {
+    return <div className="p-4">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="p-4 text-red-500">Error: {error.message}</div>;
+  }
 
   return (
-    <div className="bg-white p-4 border-r">
-      {/* Tabs Header */}
-      <div className="flex border-b mb-4">
-        <button className="px-4 py-2 font-medium text-blue-600 border-b-2 border-blue-600">
-          Latest
-        </button>
-        <button className="px-4 py-2 text-gray-600 hover:text-gray-800">
-          Trending
-        </button>
+    <div className="max-w-md mx-auto p-4 ">
+      <div className="border-b border-gray-300 mb-4">
+        <div className="flex space-x-6">
+          <button
+            onClick={() => setActiveTab("latest")}
+            className={`py-2 px-4 font-medium text-sm transition-colors ${
+              activeTab === "latest"
+                ? "border-b-2 border-black text-black"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Latest
+          </button>
+          <button
+            onClick={() => setActiveTab("trending")}
+            className={`py-2 px-4 font-medium text-sm transition-colors ${
+              activeTab === "trending"
+                ? "border-b-2 border-black text-black"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Trending
+          </button>
+        </div>
       </div>
 
-      {/* Numbered List */}
       <div className="space-y-4">
-        {sortedNews.slice(0, 5).map((item, index) => (
-          <Link
-            key={item._id}
-            href={`/news/${item._id}`}
-            className="block hover:bg-gray-50 p-3 rounded-md transition"
-          >
-            <div className="flex items-start gap-3">
-              <span className="text-2xl font-bold text-gray-400 min-w-6">
+        {currentNewsList.length === 0 ? (
+          <p className="text-gray-500">No news available.</p>
+        ) : (
+          currentNewsList.map((item, index) => (
+            <div
+              key={item._id}
+              className="flex items-start space-x-3 py-2 border-b border-gray-100 last:border-0"
+            >
+              <span className="font-bold text-xl text-gray-400 w-6 flex-shrink-0">
                 {index + 1}
               </span>
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-800 line-clamp-2">
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-gray-900 line-clamp-1">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-500 mt-1">
-                  {formatDistanceToNow(new Date(item.publishDate), {
-                    addSuffix: true,
-                  })}
-                </p>
+                {item.subTitle && (
+                  <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                    {item.subTitle}
+                  </p>
+                )}
               </div>
             </div>
-          </Link>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
 };
 
-export default LatesNews;
+export default LatestTrendingNews;

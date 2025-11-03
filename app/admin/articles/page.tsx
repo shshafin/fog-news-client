@@ -177,7 +177,7 @@ export default function AdminArticlesPage() {
     setCurrentPage(1);
   };
 
-  const getStatusBadgeVariant = (status: string) => {
+  const getStatusBadgeVariant = (status?: string) => {
     switch (status) {
       case "published":
         return "success";
