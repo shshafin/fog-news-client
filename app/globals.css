@@ -57,3 +57,34 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+/* styles/globals.css */
+
+/* Hide only the banner and top bar, keep dropdown functional */
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+}
+
+/* Fix body positioning */
+body {
+  top: 0 !important;
+}
+
+/* Keep the dropdown visible and functional */
+.goog-te-gadget {
+  /* Don't hide this - it contains the dropdown */
+}
+
+.goog-te-combo {
+  /* Ensure dropdown is visible */
+  display: block !important;
+  visibility: visible !important;
+}
