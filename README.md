@@ -1,64 +1,55 @@
-# 🌫️ The Fog News – Client Side
+# Fog News — Client
 
-**Dynamic Multimedia & E-Paper News Platform**
+Next.js frontend for a multimedia news platform: category browsing, e-paper viewing, multimedia sections, share-market surfaces, and job circular flows — wired to the Fog News API.
 
-[GitHub Repo](https://github.com/shshafin/fog-news-client)
-
----
-
-## 📖 Project Overview
-
-**The Fog News** is a modern online news platform delivering **real-time updates** on climate, weather, and share market trends.
-
-The **client-side** handles:
-
-- Displaying e-paper editions
-- Rendering multimedia content (videos, images, interactive elements)
-- Showing climate, weather, and share market information
-- Allowing users to view and apply for job circulars
-
-It provides a **smooth, engaging, and user-friendly experience**, while connecting to the backend server for dynamic data.
+| | |
+| --- | --- |
+| **Live demo** | [fog-news-client.vercel.app](https://fog-news-client.vercel.app) |
+| **API repo** | [fog-news-server](https://github.com/shshafin/fog-news-server) |
+| **Portfolio** | [shafinsadnan.com](https://shafinsadnan.com) |
 
 ---
 
-## ✨ Key Features – Client Side
+## What this repo is
 
-- 📰 **E-paper Integration:** View daily news digitally in newspaper format
-- 🎥 **Multimedia Support:** Videos, images, and interactive content
-- ☀️ **Climate & Weather Updates:** Live weather & climate info
-- 📈 **Share Market Updates:** Interactive charts & market trends
-- 💼 **Job Circulars:** Browse jobs and submit applications (via backend API)
-- 🎨 **Modern UI/UX:** Clean layout, responsive design, easy navigation
+The public-facing client for Fog News. It focuses on readable content layouts, sectioned news surfaces, and admin/editor entry points that consume the backend API — not a marketing site with unverified traffic claims.
 
----
+## Surfaces in the app
 
-## 🛠️ Tech Stack
+- News categories and article browsing (politics, sports, technology, lifestyle, and related sections)
+- E-paper viewing
+- Multimedia / video-oriented pages
+- Share-market related UI
+- Job circular browsing and application flows (API-backed)
+- Auth-related pages (login, password reset)
+- Role-oriented areas for editor / reporter / admin workflows
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+## Tech stack
 
----
+- **Next.js** (App Router)
+- **TypeScript**
+- **Tailwind CSS** + Radix/shadcn-style UI primitives
+- React Hook Form for form flows
 
-## ⚡ Installation & Setup
-
-Follow these steps to run the **client-side** locally:
+## Run locally
 
 ```bash
-### 1. Clone the repository
 git clone https://github.com/shshafin/fog-news-client.git
-
-### 2. Navigate to the project folder
 cd fog-news-client
-
-### 3. Install dependencies
 npm install
-
-### 4. Run the development server
 npm run dev
-
-### 5. Open in browser
-http://localhost:3000
-
 ```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+Point the client at a running [fog-news-server](https://github.com/shshafin/fog-news-server) instance via your local env configuration. Keep secrets out of git.
+
+```bash
+npm run build
+npm start
+```
+
+## Related
+
+- Backend API: https://github.com/shshafin/fog-news-server
+- More work: https://shafinsadnan.com
