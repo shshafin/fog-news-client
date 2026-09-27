@@ -1,37 +1,41 @@
-# Fog News — Client
+# Fog News Client
 
-Next.js frontend for a multimedia news platform: category browsing, e-paper viewing, multimedia sections, share-market surfaces, and job circular flows — wired to the Fog News API.
+A modern frontend for a multimedia news platform built with Next.js and TypeScript.
 
-| | |
-| --- | --- |
-| **Live demo** | [fog-news-client.vercel.app](https://fog-news-client.vercel.app) |
-| **API repo** | [fog-news-server](https://github.com/shshafin/fog-news-server) |
-| **Portfolio** | [shafinsadnan.com](https://shafinsadnan.com) |
+## Overview
 
----
+This project delivers a polished reading experience with support for:
+- news feeds and category browsing
+- article detail pages
+- multimedia content surfaces
+- auth flows
+- search and filtering
+- share-market and jobs-related sections
+- responsive UI for desktop and mobile
 
-## What this repo is
+## Tech Stack
 
-The public-facing client for Fog News. It focuses on readable content layouts, sectioned news surfaces, and admin/editor entry points that consume the backend API — not a marketing site with unverified traffic claims.
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Radix UI + shadcn-style primitives
+- React Hook Form + Zod
+- TanStack React Query
+- Axios
+- next-themes
+- Framer Motion
 
-## Surfaces in the app
+## Features
 
-- News categories and article browsing (politics, sports, technology, lifestyle, and related sections)
-- E-paper viewing
-- Multimedia / video-oriented pages
-- Share-market related UI
-- Job circular browsing and application flows (API-backed)
-- Auth-related pages (login, password reset)
-- Role-oriented areas for editor / reporter / admin workflows
+- clean editorial layout
+- theme support
+- content search and browsing
+- social sharing support
+- dashboard-like admin/editor surfaces
+- responsive and accessible UI
 
-## Tech stack
-
-- **Next.js** (App Router)
-- **TypeScript**
-- **Tailwind CSS** + Radix/shadcn-style UI primitives
-- React Hook Form for form flows
-
-## Run locally
+## Run Locally
 
 ```bash
 git clone https://github.com/shshafin/fog-news-client.git
@@ -40,16 +44,24 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open http://localhost:3000
 
-Point the client at a running [fog-news-server](https://github.com/shshafin/fog-news-server) instance via your local env configuration. Keep secrets out of git.
+## Scripts
 
 ```bash
+npm run dev
 npm run build
 npm start
+npm run lint
 ```
 
 ## Related
 
-- Backend API: https://github.com/shshafin/fog-news-server
-- More work: https://shafinsadnan.com
+- Backend: https://github.com/shshafin/fog-news-server
+- Portfolio: https://shafinsadnan.com
+
+## Author
+
+Shafin Sadnan
+
+GitHub: https://github.com/shshafin
